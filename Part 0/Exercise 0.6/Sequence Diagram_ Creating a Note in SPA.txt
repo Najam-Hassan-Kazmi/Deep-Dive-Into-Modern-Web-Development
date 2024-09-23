@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server-->>browser: Status Code 201
+    deactivate server
+
+    Note left of server: The server adds the new note to the older notes list
+    Note right of browser: The browser updates the UI with the new note without reloading the page
