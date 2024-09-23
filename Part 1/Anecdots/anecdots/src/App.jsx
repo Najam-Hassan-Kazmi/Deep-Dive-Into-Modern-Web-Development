@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-const App = () => {
-    const anecdotes = [
+const App = () => {        // Main component for the App
+    const anecdotes = [        //Array of Anecdote Strings
         'If it hurts, do it more often.',
         'Adding manpower to a late software project makes it later!',
         'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
@@ -12,31 +12,36 @@ const App = () => {
         'The only way to go fast, is to go well.'
     ]
 
-    const [selected, setSelected] = useState(0)
-    const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
-    const [mostVoted, setMostVoted] = useState("No votes yet!")
-    const [mostVotes, setMostVotes] = useState(0)
+    const [selected, setSelected] = useState(0)     // State to store the index of the current selected anecdote
 
-    const handleClick = () => {
+    const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))    // State to store votes for each anecdote, initialized to an array of zeros
+
+    const [mostVoted, setMostVoted] = useState("No votes yet!")    // State to store the anecdote with the most votes
+
+    const [mostVotes, setMostVotes] = useState(0)    // State to store the number of votes for the most voted anecdote
+
+
+    const handleClick = () => {    // Function to generate a random index for the next anecdote
         setSelected(Math.floor(Math.random()*anecdotes.length))
     }
 
-    const handleVote = () => {
-        const newVotes = [...votes]
-        newVotes[selected] += 1
-        setVotes(newVotes)
+    const handleVote = () => {    // Function to vote for the current anecdote
+        const newVotes = [...votes]        // Create a copy of the current votes array
+        newVotes[selected] += 1        // Increment the vote count for the selected anecdote
 
-        let maxVotes = 0
+        setVotes(newVotes)        // Update the state with the new vote counts
+
+        let maxVotes = 0        // Variables to track the highest vote count and its index
         let index = 0
 
-        for(let i=0;i<anecdotes.length;i++) {
+        for(let i=0;i<anecdotes.length;i++) {        // Loop through the votes array to find the anecdote with the most votes
             if (newVotes[i] > maxVotes) {
                 maxVotes = newVotes[i]
                 index = i
             }
         }
 
-        setMostVoted(anecdotes[index])
+        setMostVoted(anecdotes[index])        // Update the mostVoted and mostVotes states
         setMostVotes(maxVotes)
     }
 

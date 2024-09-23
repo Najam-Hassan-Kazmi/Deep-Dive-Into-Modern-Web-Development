@@ -1,12 +1,12 @@
-import {useState} from "react";
+import {useState} from "react";   // Importing the useState hook from React to manage state within the component.
 
-const App = () => {
-    const [good, setGood] = useState(0)
-    const [neutral, setNeutral] = useState(0)
-    const [poor, setPoor] = useState(0)
+const App = () => {   // App component: the main component that contains the feedback form and statistics.
+    const [good, setGood] = useState(0)   // State to track the count of "Good" feedback.
+    const [neutral, setNeutral] = useState(0)   // State to track the count of "Neutral" feedback.
+    const [poor, setPoor] = useState(0)   // State to track the count of "Poor" feedback.
 
-    const handleGood = () => {
-        setGood(good+1)
+    const handleGood = () => {    // Event handlers to update the state for each feedback option.
+        setGood(good+1)   // Increment the "Good" count by 1.
     }
     const handleNeutral = () => {
         setNeutral(neutral+1)
@@ -15,7 +15,7 @@ const App = () => {
         setPoor(poor+1)
     }
 
-    let total = good+neutral+poor
+    let total = good+neutral+poor    // Calculate the total number of feedback responses.
 
 
     return(
@@ -30,14 +30,14 @@ const App = () => {
     )
 }
 
-const Button = (props) => {
+const Button = (props) => {   // Button component: renders a button that takes a click event and a label as props.
     return(
         <button onClick={props.handleClick}>{props.name}</button>
     )
 }
 
-const Statistics = (props) => {
-    if(props.total>0){
+const Statistics = (props) => {   // Statistics component: displays feedback statistics based on the feedback counts.
+    if(props.total>0){       // Check if feedback has been given (i.e., if total feedback > 0).
         return(
             <div>
                 <h1>Statistics</h1>
@@ -53,7 +53,7 @@ const Statistics = (props) => {
         )
     }
 
-    else {
+    else {    // If no feedback has been given, display a message indicating so.
         return (
             <div>
                 <h1>Statistics</h1>
@@ -63,7 +63,7 @@ const Statistics = (props) => {
     }
 }
 
-const StatisticLine = (props) => {
+const StatisticLine = (props) => {   // StatisticLine component: displays a row with a label (text) and a value (var) in the statistics table.
     return(
         <tbody>
             <tr>
@@ -73,4 +73,4 @@ const StatisticLine = (props) => {
     )
 }
 
-export default App
+export default App   // Export the App component as the default export.
